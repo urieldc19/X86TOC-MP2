@@ -43,8 +43,5 @@ int main () {
         printf("\n");
     }
 
-    free(inputImage);
-    free(outputImage);
-
     return 0;
 }
