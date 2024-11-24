@@ -19,15 +19,14 @@ int main () {
     float* outputImage = (float*)malloc(size * sizeof(float));
 
     printf("Enter the pixel values (0-255):\n");
-    for (int i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
     }
 
     //imgCvtGrayIntoFloat(inputImage, outputImage, size);
 
     // Sample values to test print
-    for (i = 0; i < height * width; i++)
-        inputImage[i] = i + 1;
+    printf("\n");
 
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
