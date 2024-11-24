@@ -2,27 +2,26 @@ section .text
 global imgCvtGrayIntoFloat
 
 imgCvtGrayIntoFloat:
-    ; int size (in rcx)
-    ; const uint8_t* input (in rdx)
-    ; float* output (in r8)
+    ; int size (@ rcx)
+    ; const uint8_t* input (@ rdx)
+    ; float* output (@ r8)
 
     ; Save registers
     push rbx
 
-    ; Initialize loop counter
     xor rbx, rbx
 
     ; Load 255.0 into xmm1
-    mov rax, 0x437f000000000000
+    mov rax, 255
     movq xmm1, rax
     cvtsi2ss xmm1, rax
 
 .loop:
-    ; Check if we have processed all elements
+    ; Checker
     cmp rbx, rcx
     jge .end
 
-    ; Load input value into al
+    ; Load input value
     movzx eax, byte [rdx + rbx]
 
     ; Convert input value to float and divide by 255.0
@@ -32,7 +31,7 @@ imgCvtGrayIntoFloat:
     ; Store result in output array
     movss [r8 + rbx * 4], xmm0
 
-    ; Increment loop counter
+    ; Increment ctr
     inc rbx
     jmp .loop
 
