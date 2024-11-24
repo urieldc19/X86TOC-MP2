@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h> // For uint8_t
 
-void imgCvtGrayIntoFloat(const uint8_t* input, float* output, int size);
+extern void imgCvtGrayIntoFloat(int size, const uint8_t* input, float* output);
 
 int main () {
     int height, width, i, j;
@@ -23,17 +23,28 @@ int main () {
         scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
     }
 
-    //imgCvtGrayIntoFloat(inputImage, outputImage, size);
-
-    // Sample values to test print
-    printf("\n");
-
+    printf("\nInput Image before conversion:\n");
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
             printf("%d ", inputImage[i * width + j]);
         }
         printf("\n");
     }
+
+
+    imgCvtGrayIntoFloat(size, inputImage, outputImage);
+
+
+    printf("\nOutput Image after conversion:\n");
+    for (i = 0; i < height; i++) {
+        for (j = 0; j < width; j++) {
+            printf("%.2f ", outputImage[i * width + j]);
+        }
+        printf("\n");
+    }
+
+    free(inputImage);
+    free(outputImage);
 
     return 0;
 }
