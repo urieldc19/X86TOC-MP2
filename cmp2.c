@@ -15,6 +15,8 @@ int main () {
     int* array = malloc((height * width) * sizeof(int));
 
     //imgCvtGrayInttoFloat(height, width, array);
+
+    // Sample values to test print
     for (i = 0; i < height * width; i++)
         array[i] = i + 1;
 
