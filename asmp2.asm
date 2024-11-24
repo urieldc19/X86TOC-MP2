@@ -1,4 +1,6 @@
 section .text
+bits 64
+default rel
 global imgCvtGrayIntoFloat
 
 imgCvtGrayIntoFloat:
