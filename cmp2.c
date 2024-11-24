@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h> // For uint8_t
 
-void imgCvtGrayIntoFloat(const uint8_t* input, float* output, int size);
+extern void imgCvtGrayIntoFloat(int size, const uint8_t* input, float* output);
 
 int main () {
     int height, width, i, j;
