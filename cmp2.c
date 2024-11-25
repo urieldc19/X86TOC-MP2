@@ -22,9 +22,10 @@ int main () {
     float* outputImage = (float*)malloc(size * sizeof(float));
 
     // Prompt user to enter pixel values
-    printf("Enter the pixel values (0-255):\n");
+    //printf("Enter the pixel values (0-255):\n");
     for (i = 0; i < size; i++) {
-        scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
+        inputImage[i] = rand() % 256;
+        //scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
     }
 
     // Print input image
