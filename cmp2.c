@@ -84,6 +84,10 @@ int main () {
     } else {
         printf("\nOutputs do not match. There is an issue with the assembly function.\n");
     }
+    
+    free(inputImage);
+    free(outputImage);
+    free(cOutputImage);
 
     return 0;
 }
