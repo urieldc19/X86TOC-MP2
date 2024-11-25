@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h> // For uint8_t
+#include <time.h>
+
 
 extern void imgCvtGrayIntoFloat(int size, const uint8_t* input, float* output);
 
@@ -20,6 +22,8 @@ int main () {
     // Allocate memory for input and output images
     uint8_t* inputImage = (uint8_t*)malloc(size * sizeof(uint8_t)); // Use uint8_t
     float* outputImage = (float*)malloc(size * sizeof(float));
+
+    srand(time(NULL));
 
     // Prompt user to enter pixel values
     //printf("Enter the pixel values (0-255):\n");
