@@ -19,9 +19,9 @@ imgCvtGrayIntoFloat:
     movq xmm1, rax ; float divisor = 255.0f;
     cvtsi2ss xmm1, rax ; Convert integer 255 to float and store in xmm1
 
-.loop:
+L1:
     cmp rbx, rcx ; if (i >= size)
-    jge .end ; jump to end if condition met
+    jge END ; jump to end if condition met
 
     ; Load input value into eax (pixel value)
     movzx eax, byte [rdx + rbx]
@@ -37,9 +37,9 @@ imgCvtGrayIntoFloat:
 
     inc rbx ; i++;
 
-    jmp .loop
+    jmp L1
 
-.end:
+END:
     ; Restore registers and return
     pop rbx
     ret
