@@ -55,6 +55,7 @@ int main () {
         //scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
     }
 
+    /*
     // Print input image
     printf("\nInput Image before conversion:\n");
     for (i = 0; i < height; i++) {
@@ -63,12 +64,28 @@ int main () {
         }
         printf("\n");
     }
+    */
 
-    // Call the Assembly function
-    imgCvtGrayIntoFloat(size, inputImage, outputImage);
+    // Measure execution time of the Assembly function
+    clock_t start, end;
+    double cpu_time_used;
+    int num_iterations = 100; // Number of iterations to average the time
+    int k;
+
+    start = clock();
+    for (k = 0; k < num_iterations; k++) {
+
+        // Call the Assembly function
+        imgCvtGrayIntoFloat(size, inputImage, outputImage);
+    }
+    end = clock();
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC / num_iterations;
+
     // Call the C equivalent function
     imgCvtGrayIntoFloat_C(size, inputImage, cOutputImage);
 
+    /*
     // Print output image
     printf("\nOutput Image after conversion:\n");
     for (i = 0; i < height; i++) {
@@ -77,6 +94,7 @@ int main () {
         }
         printf("\n");
     }
+    */
 
     // Compare the outputs
     if (compareOutputs(size, outputImage, cOutputImage)) {
@@ -84,6 +102,8 @@ int main () {
     } else {
         printf("\nOutputs do not match. There is an issue with the assembly function.\n");
     }
+
+    printf("Average execution time of Assembly function: %f seconds\n", cpu_time_used);
     
     free(inputImage);
     free(outputImage);
