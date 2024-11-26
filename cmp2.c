@@ -71,7 +71,7 @@ int main () {
         inputImage[i] = rand() % 256;
     }
     
-    /*
+    
     // Print input image
     printf("\nInput Image before conversion:\n");
     for (i = 0; i < height; i++) {
@@ -80,7 +80,7 @@ int main () {
         }
         printf("\n");
     }
-    */
+    
 
     // Call the Assembly Function
     imgCvtGrayIntoFloat(size, inputImage, outputImage);
@@ -88,7 +88,7 @@ int main () {
     imgCvtGrayIntoFloat_C(size, inputImage, cOutputImage);
 
     // Print output image
-    /*
+    
     printf("\nOutput Image after conversion:\n");
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
@@ -96,7 +96,7 @@ int main () {
         }
         printf("\n");
     }
-    */
+    
 
     // Compare the outputs
     if (compareOutputs(size, outputImage, cOutputImage)) {
