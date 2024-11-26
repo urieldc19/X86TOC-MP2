@@ -28,6 +28,23 @@ bool compareOutputs(int size, const float* a, const float* b) {
     return true;
 }
 
+// Function to measure the execution time of the assembly function
+void measureExecutionTime(int size, const uint8_t* input, float* output) {
+    clock_t start, end;
+    double cpu_time_used;
+    int num_iterations = 100;
+    int k;
+
+    start = clock();
+    for (k = 0; k < num_iterations; k++) {
+        imgCvtGrayIntoFloat(size, input, output);
+    }
+    end = clock();
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC / num_iterations;
+    printf("Average execution time of Assembly function: %f seconds\n", cpu_time_used);
+}
+
 int main () {
 
     // Prompt array size
@@ -48,13 +65,11 @@ int main () {
 
     srand(time(NULL));
 
-    // Prompt user to enter pixel values
-    //printf("Enter the pixel values (0-255):\n");
+    // Generate random pixel values
     for (i = 0; i < size; i++) {
         inputImage[i] = rand() % 256;
-        //scanf("%hhu", &inputImage[i]); // %hhu is still correct for uint8_t
     }
-
+    
     /*
     // Print input image
     printf("\nInput Image before conversion:\n");
@@ -66,27 +81,11 @@ int main () {
     }
     */
 
-    // Measure execution time of the Assembly function
-    clock_t start, end;
-    double cpu_time_used;
-    int num_iterations = 100; // Number of iterations to average the time
-    int k;
-
-    start = clock();
-    for (k = 0; k < num_iterations; k++) {
-
-        // Call the Assembly function
-        imgCvtGrayIntoFloat(size, inputImage, outputImage);
-    }
-    end = clock();
-
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC / num_iterations;
-
     // Call the C equivalent function
     imgCvtGrayIntoFloat_C(size, inputImage, cOutputImage);
 
-    /*
     // Print output image
+    /*
     printf("\nOutput Image after conversion:\n");
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
@@ -103,7 +102,8 @@ int main () {
         printf("\nOutputs do not match. There is an issue with the assembly function.\n");
     }
 
-    printf("Average execution time of Assembly function: %f seconds\n", cpu_time_used);
+    // Measure the execution time of the assembly function
+    measureExecutionTime(size, inputImage, outputImage);
     
     free(inputImage);
     free(outputImage);
