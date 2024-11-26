@@ -62,6 +62,7 @@ int main () {
     uint8_t* inputImage = (uint8_t*)malloc(size * sizeof(uint8_t)); // Use uint8_t
     float* outputImage = (float*)malloc(size * sizeof(float));
     float* cOutputImage = (float*)malloc(size * sizeof(float));
+    float* testOutputImage = (float*)malloc(size * sizeof(float));
 
     srand(time(NULL));
 
@@ -81,6 +82,8 @@ int main () {
     }
     */
 
+    // Call the Assembly Function
+    imgCvtGrayIntoFloat(size, inputImage, outputImage);
     // Call the C equivalent function
     imgCvtGrayIntoFloat_C(size, inputImage, cOutputImage);
 
@@ -103,7 +106,7 @@ int main () {
     }
 
     // Measure the execution time of the assembly function
-    measureExecutionTime(size, inputImage, outputImage);
+    measureExecutionTime(size, inputImage, testOutputImage);
     
     free(inputImage);
     free(outputImage);
