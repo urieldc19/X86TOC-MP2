@@ -64,22 +64,23 @@ int main () {
     float* cOutputImage = (float*)malloc(size * sizeof(float));
     float* testOutputImage = (float*)malloc(size * sizeof(float));
 
-    srand(time(NULL));
+    //srand(time(NULL));
 
     // Generate random pixel values
     for (i = 0; i < size; i++) {
-        inputImage[i] = rand() % 256;
+        //inputImage[i] = rand() % 256;
+        scanf("%d", &inputImage[i]);
     }
     
     
     // Print input image
-    printf("\nInput Image before conversion:\n");
+    /*printf("\nInput Image before conversion:\n");
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
             printf("%d ", inputImage[i * width + j]);
         }
         printf("\n");
-    }
+    }*/
     
 
     // Call the Assembly Function
@@ -89,10 +90,10 @@ int main () {
 
     // Print output image
     
-    printf("\nOutput Image after conversion:\n");
+    //printf("\nOutput Image after conversion:\n");
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
-            printf("%.2f ", outputImage[i * width + j]);
+            printf("%.4f ", outputImage[i * width + j]);
         }
         printf("\n");
     }
